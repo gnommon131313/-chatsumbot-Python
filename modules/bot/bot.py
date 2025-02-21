@@ -28,7 +28,7 @@ class Bot:
     def __init__(self):
         print(f"-----bot-launched-----")
         # db.create_tables()  # Только в самом начале и для тестов
-        self._bot = telebot.TeleBot(os.environ.get("PRODUCTION_TOKEN"))
+        self._bot = telebot.TeleBot(os.getenv("PRODUCTION_TOKEN"))
         self._data = self.Data(users={})
     
         # @Logger().error_redirect_message

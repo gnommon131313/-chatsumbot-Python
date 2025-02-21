@@ -1,3 +1,4 @@
+import os
 from langgraph.graph import Graph
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama.llms import OllamaLLM
@@ -20,7 +21,7 @@ class LLMResponder:
     def _generate_answer(self, state_data) -> dict:
         template = 'Question: {question}\n\nRelevant Documents:{relevant_documents}\n\nAnswer: "please answer only based on the data obtained from the documents."'
         prompt = ChatPromptTemplate.from_template(template)
-        model = OllamaLLM(model="deepseek-r1:7b")
+        model = OllamaLLM(model=os.getenv("OllamaLLM"))
         chain = prompt | model
         
         state_data["full"] = chain.invoke({

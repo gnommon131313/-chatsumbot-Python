@@ -7,7 +7,7 @@ from modules.db import models
 class DBManager:
     
     def __init__(self) -> None:
-        self.engine = sqlalchemy.create_engine(os.environ.get("DB"), echo=True)
+        self.engine = sqlalchemy.create_engine(os.getenv("DB"), echo=True)
 
     def create_session(self) -> Session:
         return Session(self.engine)
